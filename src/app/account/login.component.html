@@ -1,0 +1,37 @@
+﻿<h3 class="card-header">Inicio de Sesión</h3>  <!-- Título de la página de inicio de sesión -->
+
+<div class="card-body">  <!-- Cuerpo del formulario de inicio de sesión -->
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">  <!-- Formulario con un FormGroup y función onSubmit asociada -->
+
+        <div class="mb-3">
+            <label class="form-label">Gmail</label>  <!-- Etiqueta para el campo de correo electrónico -->
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />  <!-- Campo de entrada de texto para el correo electrónico -->
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de correo electrónico tiene errores -->
+                <div *ngIf="f.email.errors.required">Gmail es requerido</div>  <!-- Error si el campo está vacío -->
+                <div *ngIf="f.email.errors.email">Gmail no es válido</div>  <!-- Error si el formato del correo electrónico es inválido -->
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>  <!-- Etiqueta para el campo de contraseña -->
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />  <!-- Campo de entrada de contraseña -->
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de contraseña tiene errores -->
+                <div *ngIf="f.password.errors.required">La contraseña es requerida</div>  <!-- Error si el campo está vacío -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                <button [disabled]="submitting" class="btn btn-primary">  <!-- Botón para enviar el formulario (puede estar deshabilitado durante el envío) -->
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>  <!-- Icono de carga si se está enviando el formulario -->
+                    Iniciar Sesión
+                </button>
+                <a routerLink="../register" class="btn btn-link">Registrarse</a>  <!-- Enlace para registrarse y redirigir a la página de registro -->
+            </div>
+            <div class="mb-3 col text-end">
+                <a routerLink="../forgot-password" class="btn btn-link pe-0">¿Olvidó su Contraseña?</a>  <!-- Enlace para restablecer la contraseña y redirigir a la página de restablecimiento de contraseña -->
+            </div>
+        </div>
+    </form>
+</div>

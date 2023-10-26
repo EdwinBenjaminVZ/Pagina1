@@ -1,0 +1,13 @@
+﻿<h1>Mi Perfil</h1>
+<!-- Encabezado que muestra "Mi Perfil" -->
+
+<p *ngIf="account">
+    <!-- Párrafo que solo se muestra si la variable 'account' tiene un valor -->
+    <strong>Nombre: </strong> {{account.title}} {{account.firstName}} {{account.lastName}}<br />
+    <!-- Muestra el título, nombre y apellido del usuario -->
+    <strong>Email: </strong> {{account.email}}
+    <!-- Muestra el correo electrónico del usuario -->
+</p>
+
+<p><a routerLink="update" class="btn btn-primary">Actualizar Perfil</a></p>
+<!-- Párrafo que contiene un enlace a "Actualizar Perfil" usando el atributo 'routerLink' -->

@@ -1,0 +1,81 @@
+<div class="container mt-5">
+    <!-- Comentario: Sección principal del formulario en un contenedor con un margen superior. -->
+
+    <h1 class="mb-4">Formulario</h1>
+    <!-- Comentario: Encabezado principal del formulario. -->
+
+    <form>
+      <!-- Comentario: Inicio del formulario. -->
+
+      <div class="mb-3">
+        <!-- Comentario: Contenedor para un campo de entrada (input). -->
+
+        <label for="nombre" class="form-label">Nombre</label>
+        <!-- Comentario: Etiqueta (label) para el campo de entrada con el id "nombre". -->
+
+        <input type="text" id="nombre" class="form-control" [(ngModel)]="nombre" name="nombre">
+        <!-- Comentario: Campo de entrada de texto con el id "nombre" y vinculado a la variable "nombre" mediante ngModel. -->
+
+      </div>
+
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" id="apellido" class="form-control" [(ngModel)]="apellido" name="apellido">
+      </div>
+
+      <div class="mb-3">
+        <label for="oficio" class="form-label">Oficio</label>
+        <input type="text" id="oficio" class="form-control" [(ngModel)]="oficio" name="oficio">
+      </div>
+
+      <div class="mb-3">
+        <label for="genero" class="form-label">Género</label>
+        <select id="genero" class="form-select" [(ngModel)]="genero" name="genero">
+          <!-- Comentario: Lista desplegable para seleccionar el género. -->
+
+          <option value="masculino">Masculino</option>
+          <!-- Comentario: Opción para seleccionar el género masculino. -->
+
+          <option value="femenino">Femenino</option>
+          <!-- Comentario: Opción para seleccionar el género femenino. -->
+
+          <option value="otro">Otro</option>
+          <!-- Comentario: Opción para seleccionar otro género. -->
+
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="ciudad" class="form-label">Ciudad</label>
+        <input type="text" id="ciudad" class="form-control" [(ngModel)]="ciudad" name="ciudad">
+      </div>
+
+      <button (click)="guardarDatos()" class="btn btn-primary">Guardar</button>
+      <!-- Comentario: Botón que llama a la función "guardarDatos" al hacer clic. -->
+
+    </form>
+    <!-- Comentario: Fin del formulario. -->
+
+    <div class="mt-4" *ngIf="datosGuardados">
+      <!-- Comentario: Sección que se mostrará si la variable "datosGuardados" es verdadera. -->
+
+      <h2>Datos Ingresados:</h2>
+      <!-- Comentario: Título para los datos ingresados. -->
+
+      <p>Nombre: {{nombre}}</p>
+      <!-- Comentario: Muestra el nombre ingresado. -->
+
+      <p>Apellido: {{apellido}}</p>
+      <!-- Comentario: Muestra el apellido ingresado. -->
+
+      <p>Oficio: {{oficio}}</p>
+      <!-- Comentario: Muestra el oficio ingresado. -->
+
+      <p>Género: {{genero}}</p>
+      <!-- Comentario: Muestra el género seleccionado. -->
+
+      <p>Ciudad: {{ciudad}}</p>
+      <!-- Comentario: Muestra la ciudad ingresada. -->
+
+    </div>
+  </div>

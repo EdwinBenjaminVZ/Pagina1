@@ -1,0 +1,29 @@
+﻿<div class="app-container" [ngClass]="{ 'bg-light': account }">
+    <!-- Contenedor principal de la aplicación con una clase condicional basada en 'account' -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="account">
+        <!-- Barra de navegación principal (navbar) con un menú desplegable de estilo oscuro -->
+        <div class="navbar-nav">
+            <!-- Contenedor de elementos de navegación en la barra de navegación -->
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item nav-link">Home</a>
+            <!-- Enlace de navegación a la página de inicio (ruta '/') con estilos activos si corresponde -->
+            <a routerLink="/profile" routerLinkActive="active" class="nav-item nav-link">Perfil</a>
+            <!-- Enlace de navegación a la página de perfil (ruta '/profile') con estilos activos si corresponde -->
+            <a *ngIf="account.role === Role.Admin" routerLink="/admin" routerLinkActive="active" class="nav-item nav-link">Administrador</a>
+            <!-- Enlace de navegación a la página de administrador (ruta '/admin') visible solo si el rol es Admin -->
+            <a routerLink="/formulario" class="nav-item nav-link">Ir al Formulario</a>
+            <!-- Enlace de navegación a la página de formulario (ruta '/formulario') -->
+
+            <button (click)="logout()" class="btn btn-link nav-item nav-link">Salir</button>
+            <!-- Botón de cierre de sesión que llama a la función 'logout' al hacer clic -->
+        </div>
+    </nav>
+
+    <!-- Enchufe de router para rutas secundarias con el nombre "subnav" -->
+    <router-outlet name="subnav"></router-outlet>
+
+    <!-- Componente para mostrar alertas globales en la aplicación -->
+    <alert></alert>
+
+    <!-- Enchufe de router principal para cargar componentes según las rutas definidas en la aplicación -->
+    <router-outlet></router-outlet>
+</div>

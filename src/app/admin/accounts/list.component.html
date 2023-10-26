@@ -1,0 +1,63 @@
+﻿<h1>Cuetas</h1>
+<!-- Título de la página que indica "Cuentas" -->
+
+<p>Todas las Cuentas (Solo Administrado):</p>
+<!-- Párrafo que describe "Todas las cuentas desde un punto final seguro (solo para administradores):" -->
+
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Crear Cuenta</a>
+<!-- Enlace que utiliza la directiva 'routerLink' para redirigir a la ruta "add" y muestra un botón para "Crear una cuenta" -->
+
+<table class="table table-striped">
+    <!-- Tabla con clases de Bootstrap para estilos (rayas en las filas) -->
+
+    <thead>
+        <tr>
+            <!-- Cabecera de la tabla -->
+            <th style="width:30%">Nombre</th>
+            <!-- Encabezado de columna con un ancho del 30% que muestra "Nombre" -->
+            <th style="width:30%">Email</th>
+            <!-- Encabezado de columna con un ancho del 30% que muestra "Email" -->
+            <th style="width:30%">Rol</th>
+            <!-- Encabezado de columna con un ancho del 30% que muestra "Rol" -->
+            <th style="width:10%"></th>
+            <!-- Encabezado de columna con un ancho del 10% (vacío) -->
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Cuerpo de la tabla -->
+        <tr *ngFor="let account of accounts">
+            <!-- Para cada cuenta en el arreglo 'accounts' -->
+
+            <td class="align-middle">{{account.title}} {{account.firstName}} {{account.lastName}}</td>
+            <!-- Celda que muestra el nombre completo de la cuenta (título, nombre y apellido) -->
+            <td class="align-middle">{{account.email}}</td>
+            <!-- Celda que muestra el correo electrónico de la cuenta -->
+            <td class="align-middle">{{account.role}}</td>
+            <!-- Celda que muestra el rol de la cuenta -->
+
+            <td style="white-space: nowrap">
+                <!-- Celda con estilo específico -->
+                <a routerLink="edit/{{account.id}}" class="btn btn-sm btn-primary me-1">Editar</a>
+                <!-- Enlace que utiliza 'routerLink' para redirigir a la ruta "edit" con el ID de la cuenta y muestra un botón para "Editar" -->
+                <button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
+                    <!-- Botón para "Eliminar" una cuenta, con un indicador de carga si 'account.isDeleting' es verdadero -->
+                    <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <!-- Icono de carga si 'account.isDeleting' es verdadero -->
+                    <span *ngIf="!account.isDeleting">Eliminar</span>
+                    <!-- Texto "Eliminar" si 'account.isDeleting' es falso -->
+                </button>
+            </td>
+        </tr>
+
+        <tr *ngIf="!accounts">
+            <!-- Para el caso en que no haya cuentas (cuando 'accounts' es nulo o vacío) -->
+
+            <td colspan="4" class="text-center">
+                <!-- Celda que ocupa cuatro columnas y se centra en el texto -->
+                <span class="spinner-border spinner-border-lg align-center"></span>
+                <!-- Icono de carga grande para indicar que se está cargando información -->
+            </td>
+        </tr>
+    </tbody>
+</table>

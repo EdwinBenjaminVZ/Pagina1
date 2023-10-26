@@ -1,0 +1,88 @@
+﻿<h1>Actualizar Perfil</h1>
+<!-- Encabezado de la página que indica "Actualizar Perfil" -->
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Inicio de un formulario que utiliza el formulario reactivo y llama a 'onSubmit()' al enviar -->
+    <div class="row">
+        <!-- Inicio de una fila para la disposición de elementos en columnas -->
+        <div class="mb-3 col-2">
+            <!-- Columna 1: Título -->
+            <label class="form-label">Título</label>
+            <!-- Etiqueta de formulario para el campo de título -->
+            <select formControlName="title" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                <!-- Campo de selección para el título con validación de clase condicional -->
+                <option value=""></option>
+                <!-- Opción vacía -->
+                <option value="Mr">Sr.</option>
+                <option value="Mrs">Sra.</option>
+                <option value="Miss">Señorita</option>
+                <option value="Ms">Señorita</option>
+            </select>
+            <!-- Opciones de título y manejo de errores -->
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <!-- Mensaje de error si es requerido -->
+                <div *ngIf="f.title.errors.required">El título es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <!-- Columna 2: Nombre -->
+            <label class="form-label">Nombre</label>
+            <!-- Etiqueta de formulario para el campo de nombre -->
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <!-- Campo de entrada de texto para el nombre con validación de clase condicional -->
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <!-- Mensaje de error si es requerido -->
+                <div *ngIf="f.firstName.errors.required">El nombre es obligatorio</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <!-- Columna 3: Apellido -->
+            <label class="form-label">Apellido</label>
+            <!-- Etiqueta de formulario para el campo de apellido -->
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <!-- Campo de entrada de texto para el apellido con validación de clase condicional -->
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <!-- Mensaje de error si es requerido -->
+                <div *ngIf="f.lastName.errors.required">El apellido es obligatorio</div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la fila de columnas -->
+
+    <div class="mb-3">
+        <!-- Campo de correo electrónico -->
+        <label class="form-label">Correo Electrónico</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <!-- Campo de entrada de texto para el correo electrónico con validación de clase condicional -->
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <!-- Mensajes de error si es requerido o no es un correo válido -->
+            <div *ngIf="f.email.errors.required">El correo electrónico es obligatorio</div>
+            <div *ngIf="f.email.errors.email">El correo electrónico debe ser una dirección de correo válida</div>
+        </div>
+    </div>
+
+    <h3 class="pt-3">Cambiar Contraseña</h3>
+    <!-- Encabezado para cambiar la contraseña -->
+    <p>Dejar en blanco para mantener la misma contraseña</p>
+    <!-- Información para dejar la contraseña en blanco si no se desea cambiar -->
+
+    <div class="row">
+        <!-- Inicio de una nueva fila para la disposición de elementos en columnas -->
+        <div class="mb-3 col">
+            <!-- Columna 4: Contraseña -->
+            <label class="form-label">Contraseña</label>
+            <!-- Etiqueta de formulario para el campo de contraseña -->
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <!-- Campo de entrada de contraseña con validación de clase condicional -->
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <!-- Mensajes de error si es requerido o no cumple con la longitud mínima -->
+                <div *ngIf="f.password.errors.required">La contraseña es obligatoria</div>
+                <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
+            </div>
+        </div>
+        <div class="mb-3 col">
+            <!-- Columna 5: Confirmar Contraseña -->
+            <label class="form-label">Confirmar Contraseña</label>
+            <!-- Etiqueta de formulario para el campo de confirmación de contraseña -->
+            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <!-- Campo de entrada de confirmación de contraseña con validación de clase condicional -->

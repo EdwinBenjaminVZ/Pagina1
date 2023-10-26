@@ -1,0 +1,79 @@
+﻿<h3 class="card-header">Registro</h3>  <!-- Título de la página -->
+
+<div class="card-body">  <!-- Cuerpo del formulario -->
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">  <!-- Formulario con un FormGroup y función onSubmit asociada -->
+
+        <div class="row">
+            <div class="mb-3 col-2">
+                <label class="form-label">Título</label>  <!-- Etiqueta para el campo de título -->
+                <select formControlName="title" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">  <!-- Campo de selección para el título -->
+                    <option value=""></option>  <!-- Opción vacía (sin selección) -->
+                    <option value="Mr">Sr.</option>  <!-- Opción para "Sr." -->
+                    <option value="Mrs">Señor.</option>  <!-- Opción para "Sra." -->
+                    <option value="Miss">Señorita</option>  <!-- Opción para "Señorita" -->
+                    <option value="Ms">Sra.</option>  <!-- Opción para "Srita." -->
+                </select>
+                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de título tiene errores -->
+                    <div *ngIf="f.title.errors.required">El título es requerido</div>
+                </div>
+            </div>
+            <div class="mb-3 col-5">
+                <label class="form-label">Nombre</label>  <!-- Etiqueta para el campo de nombre -->
+                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />  <!-- Campo de entrada de texto para el nombre -->
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de nombre tiene errores -->
+                    <div *ngIf="f.firstName.errors.required">El nombre es requerido</div>
+                </div>
+            </div>
+            <div class="mb-3 col-5">
+                <label class="form-label">Apellido</label>  <!-- Etiqueta para el campo de apellido -->
+                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />  <!-- Campo de entrada de texto para el apellido -->
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de apellido tiene errores -->
+                    <div *ngIf="f.lastName.errors.required">El apellido es requerido</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo Electrónico</label>  <!-- Etiqueta para el campo de correo electrónico -->
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />  <!-- Campo de entrada de texto para el correo electrónico -->
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de correo electrónico tiene errores -->
+                <div *ngIf="f.email.errors.required">El correo electrónico es requerido</div>
+                <div *ngIf="f.email.errors.email">El correo electrónico debe ser una dirección de correo válida</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                <label class="form-label">Contraseña</label>  <!-- Etiqueta para el campo de contraseña -->
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />  <!-- Campo de entrada de contraseña -->
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de contraseña tiene errores -->
+                    <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                    <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label class="form-label">Confirmar Contraseña</label>  <!-- Etiqueta para el campo de confirmación de contraseña -->
+                <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />  <!-- Campo de entrada de confirmación de contraseña -->
+                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">  <!-- Mensaje de error si el campo de confirmación de contraseña tiene errores -->
+                    <div *ngIf="f.confirmPassword.errors.required">La confirmación de contraseña es requerida</div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas deben coincidir</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />  <!-- Campo de aceptación de términos y condiciones (casilla de verificación) -->
+            <label for="acceptTerms" class="form-check-label">Aceptar Términos y Condiciones</label>
+            <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Aceptar Términos y Condiciones es requerido</div>  <!-- Mensaje de error si no se aceptan los términos y condiciones -->
+        </div>
+
+        <div class="mb-3">
+            <button [disabled]="submitting" class="btn btn-primary">  <!-- Botón para enviar el formulario (puede estar deshabilitado durante el envío) -->
+                <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>  <!-- Icono de carga si se está enviando el formulario -->
+                Registrar
+            </button>
+            <a routerLink="../login" href="" class="btn btn-link">Cancelar</a>  <!-- Enlace para cancelar y volver a la página de inicio de sesión -->
+        </div>
+    </form>
+</div>
